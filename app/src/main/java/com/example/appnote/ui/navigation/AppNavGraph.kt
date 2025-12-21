@@ -38,7 +38,10 @@ fun AppNavGraph() {
 
         composable("${Routes.NOTE_DETAILS}/{noteId}") {
             val id = it.arguments?.getString("noteId")!!.toInt()
-            NoteDetailsScreen(id)
+            NoteDetailsScreen(
+                id,
+                onBack = { navController.popBackStack() }
+            )
         }
 
 
