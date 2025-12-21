@@ -14,7 +14,7 @@ fun HomeScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("My Notes") }
+                title = { Text("My Notes !") }
             )
         },
         floatingActionButton = {
