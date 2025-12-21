@@ -1,11 +1,9 @@
 package com.example.appnote.ui.navigation
 
+import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-
-import androidx.compose.runtime.Composable
-import androidx.navigation.compose.*
 import com.example.appnote.ui.screens.*
 
 @Composable
@@ -16,6 +14,7 @@ fun AppNavGraph() {
         navController = navController,
         startDestination = Routes.LOGIN
     ) {
+
         composable(Routes.LOGIN) {
             LoginScreen(
                 onLoginSuccess = {
@@ -27,7 +26,28 @@ fun AppNavGraph() {
         }
 
         composable(Routes.HOME) {
-            HomeScreen()
+            HomeScreen(
+                onAddNote = {
+                    navController.navigate(Routes.ADD_NOTE)
+                },
+                onNoteClick = { noteId ->
+                    navController.navigate("${Routes.NOTE_DETAILS}/$noteId")
+                }
+            )
+        }
+
+        composable("${Routes.NOTE_DETAILS}/{noteId}") {
+            val id = it.arguments?.getString("noteId")!!.toInt()
+            NoteDetailsScreen(id)
+        }
+
+
+        composable(Routes.ADD_NOTE) {
+            AddNoteScreen(
+                onSave = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
