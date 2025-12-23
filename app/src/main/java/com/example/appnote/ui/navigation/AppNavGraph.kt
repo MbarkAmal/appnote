@@ -5,9 +5,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appnote.ui.screens.*
+import com.example.appnote.ui.viewmodel.NoteViewModel
 
 @Composable
-fun AppNavGraph() {
+fun AppNavGraph(
+    noteViewModel: NoteViewModel
+) {
     val navController = rememberNavController()
 
     NavHost(
@@ -27,6 +30,7 @@ fun AppNavGraph() {
 
         composable(Routes.HOME) {
             HomeScreen(
+                viewModel = noteViewModel,
                 onAddNote = {
                     navController.navigate(Routes.ADD_NOTE)
                 },
@@ -36,20 +40,24 @@ fun AppNavGraph() {
             )
         }
 
-        composable("${Routes.NOTE_DETAILS}/{noteId}") {
-            val id = it.arguments?.getString("noteId")!!.toInt()
-            NoteDetailsScreen(
-                id,
-                onBack = { navController.popBackStack() }
-            )
-        }
-
-
         composable(Routes.ADD_NOTE) {
             AddNoteScreen(
+                viewModel = noteViewModel,
                 onSave = {
                     navController.popBackStack()
                 }
+            )
+        }
+
+        composable("${Routes.NOTE_DETAILS}/{noteId}") { backStackEntry ->
+            val id = backStackEntry.arguments
+                ?.getString("noteId")
+                ?.toInt() ?: 0
+
+            NoteDetailsScreen(
+                viewModel = noteViewModel,
+                noteId = id,
+                onBack = { navController.popBackStack() }
             )
         }
     }

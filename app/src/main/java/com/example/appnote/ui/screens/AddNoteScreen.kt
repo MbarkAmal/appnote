@@ -11,20 +11,16 @@ import kotlinx.coroutines.launch
 import com.example.appnote.data.local.NoteDatabase
 import com.example.appnote.data.local.NoteEntity
 import com.example.appnote.data.repository.NoteRepository
+import com.example.appnote.ui.viewmodel.NoteViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddNoteScreen(
+    viewModel: NoteViewModel,
     onSave: () -> Unit
 ) {
-
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
-
-    val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    val db = remember { NoteDatabase.getDatabase(context) }
-    val repo = remember { NoteRepository(db.noteDao()) }
 
     Scaffold(
         topBar = {
@@ -61,15 +57,8 @@ fun AddNoteScreen(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
                     if (title.isNotBlank() && content.isNotBlank()) {
-                        scope.launch {
-                            repo.insert(
-                                NoteEntity(
-                                    title = title,
-                                    content = content
-                                )
-                            )
-                            onSave() // ⬅️ go back AFTER saving
-                        }
+                        viewModel.addNote(title, content)
+                        onSave() // ⬅️ navigate back
                     }
                 }
             ) {

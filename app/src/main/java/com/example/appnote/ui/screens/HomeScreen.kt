@@ -18,24 +18,23 @@ import com.example.appnote.data.local.NoteDatabase
 import com.example.appnote.data.repository.NoteRepository
 import com.example.appnote.data.local.NoteEntity
 
+
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.appnote.ui.viewmodel.NoteViewModel
+import com.example.appnote.ui.viewmodel.NoteViewModelFactory
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    viewModel: NoteViewModel,
     onAddNote: () -> Unit,
     onNoteClick: (Int) -> Unit
 ) {
-
-    val context = LocalContext.current
-    val db = remember { NoteDatabase.getDatabase(context) }
-    val repo = remember { NoteRepository(db.noteDao()) }
-
-    val notes by repo.getNotes().collectAsState(initial = emptyList())
+    val notes by viewModel.notes.collectAsState(initial = emptyList())
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("My Notes") }
-            )
+            TopAppBar(title = { Text("My Notes") })
         },
         floatingActionButton = {
             FloatingActionButton(onClick = onAddNote) {
@@ -50,13 +49,11 @@ fun HomeScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            items(notes) { note: NoteEntity ->
+            items(notes) { note ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable {
-                            onNoteClick(note.id) // ✅ FIXED
-                        }
+                        .clickable { onNoteClick(note.id) }
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
 
@@ -70,17 +67,12 @@ fun HomeScreen(
                             )
 
                             Row {
-                                IconButton(onClick = { /* Edit later */ }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Edit,
-                                        contentDescription = "Edit"
-                                    )
-                                }
-                                IconButton(onClick = { /* Delete later */ }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Delete,
-                                        contentDescription = "Delete"
-                                    )
+                                IconButton(
+                                    onClick = {
+                                        viewModel.deleteNote(note)
+                                    }
+                                ) {
+                                    Icon(Icons.Default.Delete, contentDescription = "Delete")
                                 }
                             }
                         }

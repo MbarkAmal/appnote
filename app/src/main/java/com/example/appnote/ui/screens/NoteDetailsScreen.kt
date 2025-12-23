@@ -11,25 +11,23 @@ import kotlinx.coroutines.launch
 import com.example.appnote.data.local.NoteDatabase
 import com.example.appnote.data.local.NoteEntity
 import com.example.appnote.data.repository.NoteRepository
+import com.example.appnote.ui.viewmodel.NoteViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteDetailsScreen(
+    viewModel: NoteViewModel,
     noteId: Int,
     onBack: () -> Unit
 
 ) {
-    val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    val db = remember { NoteDatabase.getDatabase(context) }
-    val repo = remember { NoteRepository(db.noteDao()) }
 
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
 
     // 🔹 Load note by ID
     LaunchedEffect(noteId) {
-        val note = repo.getNote(noteId)
+        val note = viewModel.getNoteById(noteId)
         note?.let {
             title = it.title
             content = it.content
@@ -70,16 +68,12 @@ fun NoteDetailsScreen(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    scope.launch {
-                        repo.update(
-                            NoteEntity(
-                                id = noteId,
-                                title = title,
-                                content = content
-                            )
-                        )
-                        onBack() //  go back after save
-                    }
+                    viewModel.updateNote(
+                        id = noteId ,
+                        title = title,
+                        content = content
+                    )
+                    onBack()
                 }
             ) {
                 Text("Save Changes")
