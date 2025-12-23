@@ -18,7 +18,6 @@ import com.example.appnote.data.local.NoteDatabase
 import com.example.appnote.data.repository.NoteRepository
 import com.example.appnote.data.local.NoteEntity
 
-
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appnote.ui.viewmodel.NoteViewModel
 import com.example.appnote.ui.viewmodel.NoteViewModelFactory
