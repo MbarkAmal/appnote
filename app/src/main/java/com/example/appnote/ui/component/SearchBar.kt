@@ -16,7 +16,7 @@ fun SearchBar(
         value = query,
         onValueChange = onQueryChange,
         modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text("Search notes...") },
+        placeholder = { Text("Search notes..") },
         singleLine = true
     )
 }
