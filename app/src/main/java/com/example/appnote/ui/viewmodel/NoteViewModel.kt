@@ -13,12 +13,13 @@ class NoteViewModel(
 
     val notes: Flow<List<NoteEntity>> = repository.getNotes()
 
-    fun addNote(title: String, content: String) {
+    fun addNote(title: String, content: String ) {
         viewModelScope.launch {
             repository.insert(
                 NoteEntity(
                     title = title,
-                    content = content
+                    content = content ,
+
                 )
             )
         }
@@ -26,15 +27,17 @@ class NoteViewModel(
 
     fun updateNote(id: Int, title: String, content: String) {
         viewModelScope.launch {
+            val oldNote = repository.getNote(id) ?: return@launch
+
             repository.update(
-                NoteEntity(
-                    id = id,
+                oldNote.copy(
                     title = title,
                     content = content
                 )
             )
         }
     }
+
 
     suspend fun getNoteById(id: Int): NoteEntity? {
         return repository.getNote(id)

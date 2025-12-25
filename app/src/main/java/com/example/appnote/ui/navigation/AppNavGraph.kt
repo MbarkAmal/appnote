@@ -1,6 +1,8 @@
 package com.example.appnote.ui.navigation
 
+import android.provider.Settings
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -31,6 +33,7 @@ fun AppNavGraph(
         composable(Routes.HOME) {
             HomeScreen(
                 viewModel = noteViewModel,
+                navController = navController,   // ⬅️ PASS IT HERE
                 onAddNote = {
                     navController.navigate(Routes.ADD_NOTE)
                 },
@@ -48,6 +51,11 @@ fun AppNavGraph(
                 }
             )
         }
+        composable(Routes.Settings) {
+            SettingsScreen(navController = navController)
+        }
+
+
 
         composable("${Routes.NOTE_DETAILS}/{noteId}") { backStackEntry ->
             val id = backStackEntry.arguments
@@ -62,3 +70,5 @@ fun AppNavGraph(
         }
     }
 }
+
+

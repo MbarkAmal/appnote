@@ -57,8 +57,14 @@ dependencies {
 
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.transport.api)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.material3)
     kapt("androidx.room:room-compiler:2.6.1")
 
+    implementation("com.jakewharton.threetenabp:threetenabp:1.4.4")
+
+    implementation("androidx.compose.material:material-icons-extended:1.5.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
