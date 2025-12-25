@@ -18,9 +18,6 @@ import com.example.appnote.ui.component.SearchBar
 import com.example.appnote.ui.component.NoteCard
 import com.example.appnote.ui.theme.getNoteColor
 import com.example.appnote.ui.viewmodel.NoteViewModel
-import java.text.SimpleDateFormat
-import java.util.*
-import com.example.appnote.ui.utils.formatDate
 
 
 @OptIn(ExperimentalMaterial3Api::class)
