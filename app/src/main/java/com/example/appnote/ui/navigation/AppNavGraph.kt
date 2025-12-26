@@ -17,32 +17,61 @@ fun AppNavGraph(
 
     NavHost(
         navController = navController,
-        startDestination = Routes.LOGIN
+        startDestination = Routes.SPLASH
     ) {
 
+        // Splash Screen
+        composable(Routes.SPLASH) {
+            SplashScreen(
+                onLoginClick = { navController.navigate(Routes.LOGIN) },
+                onSignUpClick = { navController.navigate(Routes.SIGNUP) }
+            )
+        }
+
+
+        // Login Screen
         composable(Routes.LOGIN) {
             LoginScreen(
-                onLoginSuccess = {
+                onLogin = { pin ->
+                    // TODO: check PIN
                     navController.navigate(Routes.HOME) {
-                        popUpTo(Routes.LOGIN) { inclusive = true }
+                        popUpTo(Routes.LOGIN) { inclusive = true } // remove Login from back stack
+                    }
+                },
+
+            )
+        }
+
+        // SignUp Screen
+        composable(Routes.SIGNUP) {
+            SignUpScreen(
+                onSignUp = { name, email, pin ->
+                    // TODO: save user info in Room / SharedPreferences
+                    navController.navigate(Routes.HOME) {
+                        popUpTo(Routes.SIGNUP) { inclusive = true } // remove SignUp from back stack
                     }
                 }
             )
         }
 
+        // Home Screen
         composable(Routes.HOME) {
             HomeScreen(
+                navController = navController,
                 viewModel = noteViewModel,
-                navController = navController,   // ⬅️ PASS IT HERE
                 onAddNote = {
                     navController.navigate(Routes.ADD_NOTE)
                 },
-                onNoteClick = { noteId ->
-                    navController.navigate("${Routes.NOTE_DETAILS}/$noteId")
+                onNoteClick = { id ->
+                    navController.navigate("${Routes.NOTE_DETAILS}/$id")
                 }
             )
         }
 
+
+
+
+        // add note
         composable(Routes.ADD_NOTE) {
             AddNoteScreen(
                 viewModel = noteViewModel,
@@ -51,12 +80,14 @@ fun AppNavGraph(
                 }
             )
         }
+
+        // setting page
         composable(Routes.Settings) {
             SettingsScreen(navController = navController)
         }
 
 
-
+        // notte detail page
         composable("${Routes.NOTE_DETAILS}/{noteId}") { backStackEntry ->
             val id = backStackEntry.arguments
                 ?.getString("noteId")

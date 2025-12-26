@@ -16,6 +16,7 @@ import com.example.appnote.data.local.NoteEntity
 import com.example.appnote.ui.component.BottomBar
 import com.example.appnote.ui.component.SearchBar
 import com.example.appnote.ui.component.NoteCard
+import com.example.appnote.ui.component.TopBar
 import com.example.appnote.ui.theme.getNoteColor
 import com.example.appnote.ui.viewmodel.NoteViewModel
 
@@ -38,7 +39,12 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Lazy Note") })
+            TopBar(
+               // title = "Lazy Note",
+                onActionClick = {
+                    // Navigate to settings or profile
+                }
+            )
         },
         bottomBar = {
             BottomBar(navController)
@@ -69,8 +75,12 @@ fun HomeScreen(
                 items(filteredNotes) { note ->
                     NoteCard(
                         note = note,
-                        onClick = { onNoteClick(note.id) },
-                        onDelete = { viewModel.deleteNote(note) }
+                        onNoteClick = { noteId ->
+                            onNoteClick(noteId) // ✅ navigate to detail
+                        },
+                        onDelete = { noteToDelete ->
+                            viewModel.deleteNote(noteToDelete) // ✅ delete
+                        }
                     )
                 }
             }

@@ -60,6 +60,8 @@ dependencies {
     implementation(libs.transport.api)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.ui.text)
     kapt("androidx.room:room-compiler:2.6.1")
 
     implementation("com.jakewharton.threetenabp:threetenabp:1.4.4")

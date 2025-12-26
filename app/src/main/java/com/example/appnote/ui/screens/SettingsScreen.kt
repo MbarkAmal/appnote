@@ -81,7 +81,18 @@ fun SettingsScreen(navController: NavController) {
                 )
             }
 
-            // Add more settings items here...
+            // Favorites
+            item {
+                SettingsItem(
+                    icon = Icons.Default.AccountCircle,
+                    title = "Log out",
+                    subtitle = "Sign out from your account",
+                    onClick = {
+                        // handle logout here
+                    }
+                )
+            }
+
         }
     }
 }
