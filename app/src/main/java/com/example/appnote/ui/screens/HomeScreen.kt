@@ -40,7 +40,7 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopBar(
-               // title = "Lazy Note",
+               /// title = "Lazy Note",
                 onActionClick = {
                     // Navigate to settings or profile
                 }
