@@ -39,14 +39,14 @@ fun SplashScreen(
 
             // Logo
             Image(
-                painter = painterResource(id = R.drawable.logo1), // replace with your logo
+                painter = painterResource(id = R.drawable.logo1),
                 contentDescription = "App Logo",
                 modifier = Modifier.size(120.dp)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // App Name
+
             Text(
                 //text = "Lazy Note",
                 text = "レイジーノート",
@@ -63,8 +63,8 @@ fun SplashScreen(
                     .fillMaxWidth()
                     .height(50.dp) ,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.onBackground,   // background from theme
-                    contentColor = MaterialTheme.colorScheme.onSecondary            // text color
+                    containerColor = MaterialTheme.colorScheme.onBackground,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
                 )
 
             ) {
@@ -79,8 +79,8 @@ fun SplashScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.onSecondary,   // background from theme
-                    contentColor = MaterialTheme.colorScheme.onBackground            // text color
+                    containerColor = MaterialTheme.colorScheme.onSecondary,
+                    contentColor = MaterialTheme.colorScheme.onBackground
                 )
             ) {
                 Text("Sign Up")

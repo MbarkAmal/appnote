@@ -54,9 +54,7 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // 🔹 Welcome Text (changed)
             Text(
-                //  text = "Continue to Lazy Note",
                 text = "おかえりなさい",
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground
@@ -112,15 +110,15 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // 🔹 Login Button (improved text)
+            //  Login Button (improved text)
             Button(
                 onClick = { onLogin(password) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.onBackground,   // background from theme
-                    contentColor = MaterialTheme.colorScheme.onSecondary            // text color
+                    containerColor = MaterialTheme.colorScheme.onBackground,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
                 ),
                 shape = RoundedCornerShape(12.dp)
             ) {

@@ -55,7 +55,7 @@ fun AddNoteScreen(
                 .fillMaxSize()
         ) {
 
-            /** 📝 Title */
+            /**  Title */
             OutlinedTextField(
                 value = title,
                 onValueChange = { title = it },
@@ -71,7 +71,7 @@ fun AddNoteScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            /** 📄 Content */
+            /**  Content */
             OutlinedTextField(
                 value = content,
                 onValueChange = { content = it },
@@ -88,7 +88,7 @@ fun AddNoteScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            /** ➕ Create Button */
+            /**  Create Button */
             Button(
                 onClick = {
                     if (title.isNotBlank() || content.isNotBlank()) {

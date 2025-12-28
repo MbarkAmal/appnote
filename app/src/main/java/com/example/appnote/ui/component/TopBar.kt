@@ -55,7 +55,7 @@ fun TopBar(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.Person, // 🔹 nicer & simple
+                        imageVector = Icons.Outlined.Person,
                         contentDescription = "Profile",
                         modifier = Modifier.size(22.dp),
                         tint = MaterialTheme.colorScheme.primary

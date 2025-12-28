@@ -76,10 +76,10 @@ fun HomeScreen(
                     NoteCard(
                         note = note,
                         onNoteClick = { noteId ->
-                            onNoteClick(noteId) // ✅ navigate to detail
+                            onNoteClick(noteId) // navigate to detail
                         },
                         onDelete = { noteToDelete ->
-                            viewModel.deleteNote(noteToDelete) // ✅ delete
+                            viewModel.deleteNote(noteToDelete) //  delete
                         }
                     )
                 }

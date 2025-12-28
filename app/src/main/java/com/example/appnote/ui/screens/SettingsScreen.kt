@@ -23,7 +23,6 @@ import com.example.appnote.ui.viewmodel.NoteViewModel
 @Composable
 fun SettingsScreen(navController: NavController) {
     var darkModeEnabled by remember { mutableStateOf(false) }
-    //var favoriteEnabled by remember { mutableStateOf(true) }
 
     Scaffold(
         topBar = {
@@ -35,7 +34,7 @@ fun SettingsScreen(navController: NavController) {
             )
         },
         bottomBar = {
-            BottomBar(navController) // ⬅ call it here
+            BottomBar(navController) // call it here
         }
     ) { padding ->
 

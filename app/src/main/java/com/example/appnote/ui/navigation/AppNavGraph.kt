@@ -33,9 +33,8 @@ fun AppNavGraph(
         composable(Routes.LOGIN) {
             LoginScreen(
                 onLogin = { pin ->
-                    // TODO: check PIN
                     navController.navigate(Routes.HOME) {
-                        popUpTo(Routes.LOGIN) { inclusive = true } // remove Login from back stack
+                        popUpTo(Routes.LOGIN) { inclusive = true }
                     }
                 },
 
@@ -46,9 +45,8 @@ fun AppNavGraph(
         composable(Routes.SIGNUP) {
             SignUpScreen(
                 onSignUp = { name, email, pin ->
-                    // TODO: save user info in Room / SharedPreferences
                     navController.navigate(Routes.HOME) {
-                        popUpTo(Routes.SIGNUP) { inclusive = true } // remove SignUp from back stack
+                        popUpTo(Routes.SIGNUP) { inclusive = true }
                     }
                 }
             )
@@ -71,7 +69,7 @@ fun AppNavGraph(
 
 
 
-        // add note
+
 // add note
         composable(Routes.ADD_NOTE) {
             AddNoteScreen(
@@ -88,7 +86,7 @@ fun AppNavGraph(
         }
 
 
-        // notte detail page
+        //  detail page
         composable("${Routes.NOTE_DETAILS}/{noteId}") { backStackEntry ->
             val id = backStackEntry.arguments
                 ?.getString("noteId")

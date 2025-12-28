@@ -32,10 +32,7 @@ fun NoteDetailsScreen(
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
 
-    fun formatDateTime(timestamp: Long): String {
-        val sdf = SimpleDateFormat("dd MMM yyyy • HH:mm", Locale.getDefault())
-        return sdf.format(Date(timestamp))
-    }
+
 
 
     LaunchedEffect(noteId) {
@@ -126,8 +123,8 @@ fun NoteDetailsScreen(
                     .height(52.dp),
                 shape = RoundedCornerShape(14.dp) ,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.onBackground,   // background from theme
-                    contentColor = MaterialTheme.colorScheme.onSecondary            // text color
+                    containerColor = MaterialTheme.colorScheme.onBackground,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
                 ),
             ) {
                 Icon(
