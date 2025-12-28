@@ -77,7 +77,11 @@ fun SplashScreen(
                 onClick = onSignUpClick,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.onSecondary,   // background from theme
+                    contentColor = MaterialTheme.colorScheme.onBackground            // text color
+                )
             ) {
                 Text("Sign Up")
             }

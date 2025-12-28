@@ -39,7 +39,7 @@ fun AppNavGraph(
                     }
                 },
 
-            )
+                )
         }
 
         // SignUp Screen
@@ -72,10 +72,11 @@ fun AppNavGraph(
 
 
         // add note
+// add note
         composable(Routes.ADD_NOTE) {
             AddNoteScreen(
                 viewModel = noteViewModel,
-                onSave = {
+                onBack = {
                     navController.popBackStack()
                 }
             )
@@ -101,5 +102,3 @@ fun AppNavGraph(
         }
     }
 }
-
-

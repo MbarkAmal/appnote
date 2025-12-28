@@ -26,6 +26,7 @@ import com.example.appnote.R
 fun LoginScreen(
     onLogin: (String) -> Unit
 ) {
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -55,13 +56,29 @@ fun LoginScreen(
 
             // 🔹 Welcome Text (changed)
             Text(
-              //  text = "Continue to Lazy Note",
+                //  text = "Continue to Lazy Note",
                 text = "おかえりなさい",
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(modifier = Modifier.height(32.dp))
+
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("Email") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth() ,
+                shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.onBackground ,
+                    focusedLabelColor = MaterialTheme.colorScheme.onBackground
+
+                )
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
 
             // 🔹 Password Input
             OutlinedTextField(
@@ -71,6 +88,11 @@ fun LoginScreen(
                 placeholder = { Text("Enter your password") },
                 singleLine = true,
                 shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.onBackground ,
+                    focusedLabelColor = MaterialTheme.colorScheme.onBackground
+
+                ),
                 visualTransformation = if (passwordVisible)
                     VisualTransformation.None
                 else

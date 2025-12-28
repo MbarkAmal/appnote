@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.BrightnessMedium
+import com.example.appnote.ui.component.TopBar
 import com.example.appnote.ui.viewmodel.NoteViewModel
 
 
@@ -22,14 +23,19 @@ import com.example.appnote.ui.viewmodel.NoteViewModel
 @Composable
 fun SettingsScreen(navController: NavController) {
     var darkModeEnabled by remember { mutableStateOf(false) }
-    var favoriteEnabled by remember { mutableStateOf(true) }
+    //var favoriteEnabled by remember { mutableStateOf(true) }
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("My Notes") })
+            TopBar(
+
+                onActionClick = {
+                    // Navigate to settings or profile
+                }
+            )
         },
         bottomBar = {
-            BottomBar(navController) // ⬅️ USED here
+            BottomBar(navController) // ⬅ call it here
         }
     ) { padding ->
 

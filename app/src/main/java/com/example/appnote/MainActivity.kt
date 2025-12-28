@@ -31,5 +31,5 @@ class MainActivity : ComponentActivity() {
 
             AppNavGraph(noteViewModel)
         }
-        }
     }
+}

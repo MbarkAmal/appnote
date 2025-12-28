@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.google.android.datatransport.Event
 
 
 
@@ -28,11 +27,7 @@ fun BottomBar(navController: NavController) {
 
         NavigationBarItem(
             selected = currentRoute == "calendar",
-            onClick = {
-                if (currentRoute != "calendar") {
-                    navController.navigate("calendar")
-                }
-            },
+            onClick = { } ,
             icon = {
                 Icon(
                     imageVector = Icons.Filled.DateRange, //
@@ -40,7 +35,7 @@ fun BottomBar(navController: NavController) {
                     modifier = Modifier.size(22.dp)
                 )
             },
-            label = { Text("Calendar", fontSize = 11.sp) }
+             label = { Text("Calendar", fontSize = 11.sp) }
         )
 
 

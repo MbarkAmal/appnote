@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.appnote.data.local.NoteEntity
 import com.example.appnote.ui.theme.getNoteColor
@@ -57,6 +58,13 @@ fun NoteCard(
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
+
+                    Text(
+                        text = formatDate(note.createdAt),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+
                     Text(
                         text = note.title,
                         style = MaterialTheme.typography.titleMedium,
@@ -64,10 +72,13 @@ fun NoteCard(
                     )
 
                     Text(
-                        text = formatDate(note.createdAt),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        text = note.content.split(".").firstOrNull()?.plus(".") ?: "",
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
+
+
                 }
 
                 IconButton(
@@ -82,7 +93,7 @@ fun NoteCard(
             }
 
         }
-        // 🔥 CONFIRMATION DIALOG
+        //  CONFIRMATION DIALOG
         if (showDeleteDialog) {
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },

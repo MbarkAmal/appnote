@@ -20,6 +20,7 @@ class NoteViewModel(
                     title = title,
                     content = content ,
 
+
                 )
             )
         }
@@ -32,7 +33,8 @@ class NoteViewModel(
             repository.update(
                 oldNote.copy(
                     title = title,
-                    content = content
+                    content = content ,
+
                 )
             )
         }
